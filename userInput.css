@@ -1,0 +1,13 @@
+.form {
+  text-align: center;
+}
+
+input {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.submit-btn {
+  border-radius: 10px;
+}

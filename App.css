@@ -1,0 +1,23 @@
+html {
+  background-color: rgba(249, 255, 255, 0.844);
+}
+
+.cross {
+  text-decoration: line-through;
+}
+
+.container {
+  width: 100%;
+  text-align: center;
+}
+
+li {
+  list-style-type: none;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
