@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { UserInput } from "./UserInput";
 
 function App() {
@@ -38,17 +38,17 @@ function App() {
       <UserInput
         onSubmit={handleSubmit}
         toDo={toDo}
-        onChange={handleChange}
         currentToDo={currentToDo}
+        onChange={handleChange}
       />
       <ul>
         {toDo.map((toDos) => (
           <li
             key={Math.floor(Math.random() * 10000)}
             id={toDos.id}
-            className="active"
             style={{ backgroundColor: toDos.background }}
           >
+            <input type="checkbox" />
             <span id="text">{toDos.value}</span>
             <span id="todo-span" onClick={() => removeToDo(toDos.id)}>
               🆇
