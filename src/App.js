@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
 import { UserInput } from "./UserInput";
+import { StatBar } from "./StatBar";
 
 function App() {
   const [toDo, setToDo] = useState([]);
@@ -16,6 +17,7 @@ function App() {
         background,
         id: Math.floor(Math.random() * 10000),
         value: currentToDo,
+        isChecked: false,
       },
     ]);
     e.preventDefault();
@@ -34,7 +36,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Task</h1>
+      <h1>Tasks</h1>
       <UserInput
         onSubmit={handleSubmit}
         toDo={toDo}
@@ -48,7 +50,7 @@ function App() {
             id={toDos.id}
             style={{ backgroundColor: toDos.background }}
           >
-            <input type="checkbox" />
+            <input name="isChecked" type="checkbox" />
             <span id="text">{toDos.value}</span>
             <span id="todo-span" onClick={() => removeToDo(toDos.id)}>
               🆇
@@ -56,6 +58,7 @@ function App() {
           </li>
         ))}
       </ul>
+      <StatBar toDo={toDo} />
     </div>
   );
 }
