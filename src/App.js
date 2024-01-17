@@ -9,6 +9,9 @@ function App() {
   const [pos, setPos] = useState(0);
   const [background, setBackground] = useState("lightPink");
 
+  let isChecked = false;
+  let updatedTask = [];
+
   const handleSubmit = (e) => {
     setToDo((prev) => [
       ...prev,
@@ -17,7 +20,7 @@ function App() {
         background,
         id: Math.floor(Math.random() * 10000),
         value: currentToDo,
-        isChecked: false,
+        isChecked,
       },
     ]);
     e.preventDefault();
@@ -30,8 +33,19 @@ function App() {
     setCurrentToDo(() => target.value);
   };
 
-  const removeToDo = (id) => {
-    setToDo((prev) => prev.filter((toRemove) => toRemove.id !== id));
+  const handleRemove = (setState, id) => {
+    setState((prev) => prev.filter((toRemove) => toRemove.id !== id));
+  };
+
+  const handleTaskComplete = (id) => {
+    updatedTask = toDo.map((task) => {
+      if (id === task.id) {
+        return { ...task, isChecked: !task.isChecked };
+      }
+      return task;
+    });
+
+    setToDo(updatedTask);
   };
 
   return (
@@ -50,15 +64,23 @@ function App() {
             id={toDos.id}
             style={{ backgroundColor: toDos.background }}
           >
-            <input name="isChecked" type="checkbox" />
+            <input
+              name="isChecked"
+              type="checkbox"
+              defaultChecked={toDos.isChecked}
+              onChange={() => handleTaskComplete(toDos.id)}
+            />
             <span id="text">{toDos.value}</span>
-            <span id="todo-span" onClick={() => removeToDo(toDos.id)}>
+            <span
+              id="todo-span"
+              onClick={() => handleRemove(setToDo, toDos.id)}
+            >
               🆇
             </span>
           </li>
         ))}
       </ul>
-      <StatBar toDo={toDo} />
+      <StatBar toDo={toDo} updatedTask={updatedTask} />
     </div>
   );
 }
