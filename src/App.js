@@ -42,6 +42,7 @@ function App() {
       if (id === task.id) {
         return { ...task, isChecked: !task.isChecked };
       }
+
       return task;
     });
 
@@ -80,6 +81,7 @@ function App() {
           </li>
         ))}
       </ul>
+
       <StatBar toDo={toDo} updatedTask={updatedTask} />
     </div>
   );
